@@ -1,0 +1,67 @@
+{
+  "size": {
+    "width": 1200,
+    "height": 630
+  },
+  "fonts": [
+    {
+      "name": "Display",
+      "family": "Inter",
+      "weight": 500,
+      "style": "normal",
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+      "sha256": "8c883f63b2c4157d997319f2c8bc6995ed4357ef371940d31ca159004a4aae63"
+    },
+    {
+      "name": "Mono",
+      "family": "JetBrains Mono",
+      "weight": 500,
+      "style": "normal",
+      "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8-qxjPQ.ttf",
+      "sha256": "3386a05f6ece969e4537de6be894170d20558e82f7d56c8c5d332972ef172160"
+    },
+    {
+      "name": "Body",
+      "family": "Newsreader",
+      "weight": 400,
+      "style": "normal",
+      "url": "https://fonts.gstatic.com/s/newsreader/v26/cY9qfjOCX1hbuyalUrK49dLac06G1ZGsZBtoBCzBDXXD9JVF438weI_ADA.ttf",
+      "sha256": "b8f5e0a8bdd6a12c722ca5635d9da87e77ccbb2d0172112e34e00c4e55f2cd5a"
+    }
+  ],
+  "renderer": [
+    {
+      "name": "next",
+      "version": "16.4.5",
+      "integrity": "sha512-rmdfsWosjTUO+6R0S3KokoIk6Kj0sWDRTe86tZHdqaWH/oXq/udX3/4xb+YQi7aWbyEFoglDU54kaifLCdXbBw=="
+    },
+    {
+      "name": "react",
+      "version": "19.3.1",
+      "integrity": "sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw=="
+    },
+    {
+      "name": "sharp",
+      "version": "0.35.5",
+      "integrity": "sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g=="
+    }
+  ],
+  "profile": {
+    "name": "Bhaskar Nikhil Sunkara",
+    "employer": "UW–Madison",
+    "focus": "TODO(nikhil): one-line focus",
+    "degree": "MS Data Science",
+    "graduation": "May 2026"
+  },
+  "colors": {
+    "ink": "#292a2e",
+    "paper": "#f6f3ed",
+    "body": "#292a2e",
+    "graphite": "#646269",
+    "accent": "#36559a",
+    "hairline": "rgba(35, 39, 46, 0.14)"
+  },
+  "generatorDigest": "bb875376e962fc73cdbcf72c89de528f2dce3d9e32da15dcaa348deb36249c60",
+  "imageDigest": "46af907b2e2947735318129acf06140109173cab391ddb302c6fc680d876aeeb",
+  "posts": []
+}

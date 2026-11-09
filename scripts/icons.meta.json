@@ -1,0 +1,44 @@
+{
+  "inputs": {
+    "accent": "#36559a",
+    "onAccent": "#ffffff",
+    "backgroundLight": "#f6f3ed",
+    "monogram": "BN",
+    "name": "Bhaskar Nikhil Sunkara",
+    "font": {
+      "name": "Display",
+      "family": "Inter",
+      "weight": 500,
+      "style": "normal",
+      "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf",
+      "sha256": "8c883f63b2c4157d997319f2c8bc6995ed4357ef371940d31ca159004a4aae63"
+    },
+    "renderer": [
+      {
+        "name": "next",
+        "version": "16.4.5",
+        "integrity": "sha512-rmdfsWosjTUO+6R0S3KokoIk6Kj0sWDRTe86tZHdqaWH/oXq/udX3/4xb+YQi7aWbyEFoglDU54kaifLCdXbBw=="
+      },
+      {
+        "name": "react",
+        "version": "19.3.1",
+        "integrity": "sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw=="
+      },
+      {
+        "name": "sharp",
+        "version": "0.35.5",
+        "integrity": "sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g=="
+      }
+    ]
+  },
+  "generatorDigest": "58d2216c69ee89d892cb095d8d8e726c09a8ace8ec4c158efddf06bce6ffa112",
+  "files": {
+    "app/favicon.ico": "a498525bd127717685b1eb3d341f7ed90f2a8b95b00ff1495bbe198e708583ec",
+    "app/icon.png": "e4f05a7bff591f9753e3d6aa74e04d7d515c315964997cf41bea666a7658c6fc",
+    "app/apple-icon.png": "c61e15ab5f4b3ba385888d8620a020cbbb2ebba2c4fca77f6302ea0643094330",
+    "public/images/icons/icon-192.png": "54a796dcca85ffb784f2f61553a6744c67396eafa8aa62e85bd3ac61a4f103a7",
+    "public/images/icons/icon-512.png": "2252ef677ec82e32f8579c33702341d812643d216321d2e4971bb664b61bc1ae",
+    "public/images/icons/icon-maskable-512.png": "48e08d7bf6bed8eeecd468c0122190762bf393869a4592e1c936d60a89d3eafe",
+    "app/manifest.json": "fde8062aeb62d2a5a88a4866b26f321cf678a5723eb0812a07841ded7eeee535"
+  }
+}
