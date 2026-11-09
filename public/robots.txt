@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /api
 
-Sitemap: https://my-page.vercel.app/sitemap.xml
+Sitemap: https://nikhilsb.vercel.app/sitemap.xml
