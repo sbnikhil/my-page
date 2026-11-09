@@ -1,18 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { aboutMarkdown } from '@/data/about';
-import profile from '@/data/profile.json';
 import { extractLogMarker } from '../logEntry';
-
-/** Bullets of one about-page section, as authored. */
-function sectionEntries(title: string) {
-  const body = aboutMarkdown.split(`# ${title}\n`)[1]?.split('\n# ')[0] ?? '';
-
-  return body
-    .split('\n')
-    .filter((line) => line.startsWith('- '))
-    .map((line) => line.slice(2));
-}
 
 const LIFTED = 'I played a lot of video games.';
 
@@ -63,7 +51,7 @@ describe('extractLogMarker', () => {
     'I am an Oregon Trail II enthusiast.',
     "I've been to approximately 50 countries, some of which I have forgotten.",
     // A measured quantity after "I was" is not an age.
-    'I was 6 months into building Promptfoo when the acquisition closed.',
+    'I was 6 months into building the startup when the acquisition closed.',
     'I was 1 of 3 founders on that team.',
     'I was 3 hours from the border.',
     'I was 50 miles out and still climbing.',
@@ -77,36 +65,5 @@ describe('extractLogMarker', () => {
     'In 2016, ',
   ])('leaves the gutter empty for: %s', (text) => {
     expect(extractLogMarker(text)).toBeNull();
-  });
-});
-
-describe('the about page log', () => {
-  const history = sectionEntries('Some history');
-
-  it('annotates every history entry with only its stated marker', () => {
-    expect(extractLogMarker(history[0])?.year).toBe(
-      String(profile.computingSince),
-    );
-    expect(
-      history
-        .map((entry) => {
-          const { year, age } = extractLogMarker(entry) ?? {};
-          return [year, age].filter(Boolean).join(' / ');
-        })
-        .join(', '),
-    ).toBe(
-      '1993 / Age 3, 1995, 1996, Age 7, Age 8, Age 10, Age 11, Age 12, Age 13, Age 14, Age 14–17, Age 16, Age 18, Age 19, Age 20',
-    );
-  });
-
-  it('leaves undated travel entries empty and derives no travel ages', () => {
-    const markers = sectionEntries('Travel / geography').map(extractLogMarker);
-    const dated = markers.filter((marker) => marker !== null);
-
-    expect(markers.length - dated.length).toBe(3);
-    expect(dated.map((marker) => marker.year).join(' ')).toBe(
-      '2016 2017 2018 2019 2020 2021 2022 2023',
-    );
-    expect(dated.every((marker) => marker.age === undefined)).toBe(true);
   });
 });

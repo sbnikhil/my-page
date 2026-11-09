@@ -1,7 +1,7 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 
 import { SiteSchema } from '@/components/Schema';
-import GoogleAnalytics from '@/components/Template/GoogleAnalytics';
 import Navigation from '@/components/Template/Navigation';
 import { MAIN_CONTENT_ID } from '@/components/Template/PageWrapper';
 import ScrollToTop from '@/components/Template/ScrollToTop';
@@ -72,18 +72,8 @@ export const metadata: Metadata = {
     template: `%s | ${AUTHOR_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  keywords: [
-    AUTHOR_NAME,
-    'OpenAI',
-    'Promptfoo',
-    'Codex Security',
-    'AI security',
-    'application security',
-    'LLM security',
-    'machine learning',
-    'startup founder',
-    'YC',
-  ],
+  // TODO(nikhil): 5–10 keywords recruiters might search for.
+  keywords: [AUTHOR_NAME],
   authors: [{ name: AUTHOR_NAME }],
   creator: AUTHOR_NAME,
   metadataBase: new URL(SITE_URL),
@@ -154,7 +144,8 @@ export default function RootLayout({
         <ScrollToTop />
         <Navigation />
         {children}
-        <GoogleAnalytics />
+        {/* Vercel Web Analytics: cookieless, reports only on Vercel deployments. */}
+        <Analytics />
       </body>
     </html>
   );

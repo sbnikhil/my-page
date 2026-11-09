@@ -23,12 +23,7 @@ import {
 } from '@/data/resume/skills';
 import work from '@/data/resume/work';
 import { sortPositions } from '@/lib/career';
-import {
-  AUTHOR_NAME,
-  SITE_DESCRIPTION,
-  SITE_IMAGE_PATH,
-  SITE_URL,
-} from '@/lib/utils';
+import { AUTHOR_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/utils';
 
 /**
  * File-like, so it keeps no trailing slash under `trailingSlash: true` — the
@@ -59,7 +54,7 @@ interface ResumeLocation {
 interface ResumeBasics {
   name: string;
   label: string;
-  image: string;
+  image?: string;
   email: string;
   url: string;
   summary: string;
@@ -150,9 +145,6 @@ function buildBasics(): ResumeBasics {
   return {
     name: AUTHOR_NAME,
     label: profile.role,
-    // The portrait, not the share card: JSON Resume renderers show this as a
-    // photograph of the person.
-    image: `${SITE_URL}${SITE_IMAGE_PATH}`,
     email: profile.email,
     url: `${SITE_URL}/`,
     summary: SITE_DESCRIPTION,

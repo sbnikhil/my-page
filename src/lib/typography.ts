@@ -30,7 +30,7 @@ const WORD = /[A-Za-z0-9\u00C0-\u024F]/;
 
 /**
  * A string that begins mid-word: the tail of a contraction or possessive whose
- * head sits in a neighbouring element, as in `<a>Promptfoo</a>'s`. Markdown
+ * head sits in a neighbouring element, as in `<a>RecoSys</a>'s`. Markdown
  * hands text over one node at a time, so this is the only context available.
  */
 const TAIL_AT_START = /^'(?:s|t|re|ve|ll|d|m|em|n)(?![A-Za-z0-9\u00C0-\u024F])/;

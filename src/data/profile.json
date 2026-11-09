@@ -1,11 +1,10 @@
 {
-  "name": "Michael D'Angelo",
-  "role": "Member of the Technical Staff",
-  "employer": "OpenAI",
-  "focus": "Promptfoo and other cyber products",
-  "birthDate": "1990-02-05T09:24:00-05:00",
-  "computingSince": 1993,
-  "countriesVisited": 55,
-  "currentCity": "San Francisco",
-  "email": "hi@mldangelo.com"
+  "name": "Bhaskar Nikhil Sunkara",
+  "role": "MS Data Science graduate",
+  "employer": "UW–Madison",
+  "focus": "TODO(nikhil): one-line focus",
+  "degree": "MS Data Science",
+  "graduation": "May 2026",
+  "currentCity": "TODO(nikhil): city",
+  "email": "todo-nikhil@example.com"
 }

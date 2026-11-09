@@ -11,14 +11,11 @@ permissions:
   contents: read
 
 env:
-  # The single build-matrix leg whose output is deployed. Named once so the
-  # Pages-configure gate and the artifact-upload gate cannot drift apart —
-  # they are a pair, and a mismatch produces a green CI run with nothing to
-  # deploy. Must stay in step with .nvmrc; the build job asserts that.
+  # The Node version .nvmrc pins, named once for the build matrix. Must stay
+  # in step with .nvmrc; the build job asserts that.
   DEPLOY_NODE: '26.x'
 
-# Supersede stale PR runs, but never cancel a main run that may already be
-# deploying. The Pages job below serializes main deployments.
+# Supersede stale PR runs; let main runs finish.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
@@ -133,11 +130,6 @@ jobs:
     needs: install
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
-    # Configure Pages only reads the existing site metadata. Application and
-    # dependency code must never run with Pages write permissions.
-    permissions:
-      contents: read
-      pages: read
     strategy:
       fail-fast: false
       matrix:
@@ -171,7 +163,7 @@ jobs:
       # Everything except this job takes its Node from .nvmrc, but a matrix
       # needs literals. If the two drift, the deploy leg stops being built and
       # main fails only after CI reports success. Catch it here, on the PR.
-      - name: Check deploy candidate matches .nvmrc
+      - name: Check build matrix matches .nvmrc
         if: matrix.os == 'ubuntu-latest'
         shell: bash
         run: |
@@ -181,27 +173,12 @@ jobs:
             echo "::error file=.nvmrc::.nvmrc pins Node $pinned but DEPLOY_NODE is $DEPLOY_NODE. Update both, and the build matrix."
             exit 1
           fi
-          echo "Deploy candidate Node $wanted matches .nvmrc."
+          echo "Build matrix Node $wanted matches .nvmrc."
 
-      # This matrix entry becomes the deployment candidate on main. Pages
-      # configuration has to run before Next builds so repository-site forks
-      # receive their basePath in generated links and assets.
-      - name: Configure GitHub Pages build
-        if: >-
-          matrix.os == 'ubuntu-latest' &&
-          matrix.node-version == env.DEPLOY_NODE &&
-          github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
-        with:
-          static_site_generator: next
-          enablement: false
-
-      # Stats use the public API anonymously, falling back to last-known floors
-      # on rate limits. Do not expose a job token to application/dependency code.
+      # Vercel builds and deploys separately; this build only proves the
+      # export works on every OS. No job token reaches application code.
       - name: Build
         run: npm run build
-        env:
-          NEXT_PUBLIC_GA_TRACKING_ID: ${{ vars.NEXT_PUBLIC_GA_TRACKING_ID }}
 
       # Checks generated HTML/XML itself: leaked drafts, robots, duplicate ids,
       # fragment and route targets, canonical/share metadata, local images, and
@@ -215,17 +192,6 @@ jobs:
       # deliberate increase is `--update-budget` plus a note in the pull request.
       - name: Measure export against size budget
         run: npm run measure-export
-
-      - name: Upload build artifacts
-        if: >-
-          matrix.os == 'ubuntu-latest' &&
-          matrix.node-version == env.DEPLOY_NODE &&
-          github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
-        with:
-          name: build-output
-          path: out/
-          retention-days: 7
 
   # Summary job to ensure all checks pass
   ci-success:
@@ -243,39 +209,3 @@ jobs:
             exit 1
           fi
           echo "All CI checks passed!"
-
-  # Publish exactly the Linux/DEPLOY_NODE artifact that passed the complete CI
-  # graph. Manual runs are intentionally deployable only from main.
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: ci-success
-    if: >-
-      github.ref == 'refs/heads/main' &&
-      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Download validated build
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
-        with:
-          name: build-output
-          path: out
-
-      - name: Package GitHub Pages artifact
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
-        with:
-          path: out
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5

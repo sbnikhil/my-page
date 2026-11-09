@@ -6,7 +6,7 @@ import { createHeadingId, createUniqueHeadingIds } from '../anchors';
 describe('createHeadingId', () => {
   it.each([
     ['Research & Development', 'research-and-development'],
-    ["Michael's Notes", 'michaels-notes'],
+    ["Nikhil's Notes", 'nikhils-notes'],
     ['Café Crème', 'cafe-creme'],
     ['!!!', 'section'],
   ])('creates a stable id for %s', (title, expected) => {
@@ -21,7 +21,7 @@ describe('createHeadingId', () => {
     ).filter((title) => title !== 'Intro');
 
     expect(createUniqueHeadingIds(titles).join(' ')).toBe(
-      'some-history i-like travel-geography fun-facts i-dream-of websites-from-people-i-admire',
+      'education what-i-work-on outside-of-work',
     );
   });
 });

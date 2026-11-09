@@ -25,14 +25,14 @@ The site is a personal portfolio for Bhaskar Nikhil Sunkara (goes by Nikhil), an
 
 The base is Michael D'Angelo's personal-site with Magic UI's floating dock added. It's hosted for free as a static export. The repo facts below were checked against the source on 2026-11-08.
 
-| Decision | Choice | Notes for the agent |
-| --- | --- | --- |
-| Base template | [mldangelo/personal-site](https://github.com/mldangelo/personal-site), MIT | Next.js 16, React 19, Tailwind v4, TypeScript. `next.config.mjs` already sets `output: 'export'`. Content lives in `src/data/*.ts` (about, contact, projects, resume/work, skills, courses, degrees). Routes include about, projects, resume, contact, writing, stats, speaking. Biome for linting, Vitest for tests. |
-| Navigation | Floating bottom dock from [dillionverma/portfolio](https://github.com/dillionverma/portfolio), MIT | Port `src/components/magicui/dock.tsx` and the navbar that uses it. Dependencies: `motion`, `@radix-ui/react-tooltip`, `lucide-react`. Credit both MIT licenses in the repo README. |
-| Hosting | Vercel Hobby (free), or GitHub Pages | The static export runs on both. The template's existing workflow deploys to GitHub Pages. If Nikhil picks Vercel, keep the export settings and connect the repo. |
-| Animation library | Motion (`motion/react`) for everything | The dock already depends on Motion, so a second library adds weight for no gain. Add GSAP only if a specific effect needs it, and justify it in the plan. |
-| Content | Placeholders only | Nikhil writes every word. Don't fill anything in from his resume or GitHub. |
-| Pages to remove | Speaking, and Stats unless Nikhil wants it | Ask before deleting a route (see Open questions). |
+| Decision          | Choice                                                                                             | Notes for the agent                                                                                                                                                                                                                                                                                                   |
+| ----------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Base template     | [mldangelo/personal-site](https://github.com/mldangelo/personal-site), MIT                         | Next.js 16, React 19, Tailwind v4, TypeScript. `next.config.mjs` already sets `output: 'export'`. Content lives in `src/data/*.ts` (about, contact, projects, resume/work, skills, courses, degrees). Routes include about, projects, resume, contact, writing, stats, speaking. Biome for linting, Vitest for tests. |
+| Navigation        | Floating bottom dock from [dillionverma/portfolio](https://github.com/dillionverma/portfolio), MIT | Port `src/components/magicui/dock.tsx` and the navbar that uses it. Dependencies: `motion`, `@radix-ui/react-tooltip`, `lucide-react`. Credit both MIT licenses in the repo README.                                                                                                                                   |
+| Hosting           | Vercel Hobby (free), or GitHub Pages                                                               | The static export runs on both. The template's existing workflow deploys to GitHub Pages. If Nikhil picks Vercel, keep the export settings and connect the repo.                                                                                                                                                      |
+| Animation library | Motion (`motion/react`) for everything                                                             | The dock already depends on Motion, so a second library adds weight for no gain. Add GSAP only if a specific effect needs it, and justify it in the plan.                                                                                                                                                             |
+| Content           | Placeholders only                                                                                  | Nikhil writes every word. Don't fill anything in from his resume or GitHub.                                                                                                                                                                                                                                           |
+| Pages to remove   | Speaking, and Stats unless Nikhil wants it                                                         | Ask before deleting a route (see Open questions).                                                                                                                                                                                                                                                                     |
 
 ## Design system
 
@@ -49,15 +49,15 @@ Keep the fonts the base already self-hosts through Fontsource and `next/font/loc
 
 Starting type scale (sizes in px, line height as a ratio). Confirm it with Nikhil on a test page:
 
-| Role | Size | Weight | Line height | Letter spacing |
-| --- | --- | --- | --- | --- |
-| Hero headline | clamp(40, 7vw, 80) | 700 | 1.05 | -0.03em |
-| Page title (H1) | clamp(32, 5vw, 56) | 700 | 1.1 | -0.025em |
-| Section title (H2) | clamp(24, 3.5vw, 36) | 600 | 1.2 | -0.02em |
-| Card title (H3) | 21 | 600 | 1.3 | -0.01em |
-| Body | 17 | 400 | 1.55 | 0 |
-| Small / meta | 14 | 500 | 1.4 | 0 |
-| Mono tag | 13 | 500 | 1.4 | 0 |
+| Role               | Size                 | Weight | Line height | Letter spacing |
+| ------------------ | -------------------- | ------ | ----------- | -------------- |
+| Hero headline      | clamp(40, 7vw, 80)   | 700    | 1.05        | -0.03em        |
+| Page title (H1)    | clamp(32, 5vw, 56)   | 700    | 1.1         | -0.025em       |
+| Section title (H2) | clamp(24, 3.5vw, 36) | 600    | 1.2         | -0.02em        |
+| Card title (H3)    | 21                   | 600    | 1.3         | -0.01em        |
+| Body               | 17                   | 400    | 1.55        | 0              |
+| Small / meta       | 14                   | 500    | 1.4         | 0              |
+| Mono tag           | 13                   | 500    | 1.4         | 0              |
 
 Body text lines should be at most about 68 characters wide (`max-width: 68ch`). Use no more than three weights on a page.
 
@@ -84,16 +84,16 @@ Two neutrals and one accent, in light and dark themes. The base already has a th
 
 Motion should make the site feel responsive. It must never hide content or make a skimming reader wait. Each rule below comes from usability research and should be treated as a hard requirement.
 
-| Rule | Requirement | Why |
-| --- | --- | --- |
-| Fade durations | Elements fading in on scroll: 100–400ms. Hover and press effects: 150–250ms, using springs where it fits. | NN/g's scroll-fading study: users who scanned quickly scrolled past text before it finished fading in ([NN/g](https://www.nngroup.com/articles/scroll-fading-101/)). |
-| Animate once | An element animates the first time it enters the viewport, then stays visible (`viewport={{ once: true }}`). | Same study: re-animating content every time the reader passes it wasted task-oriented users' time. |
-| Nothing hidden at first paint | Hero, role, resume button, and dock are visible immediately. The hero's single signature animation runs *on* content that's already readable. | Content that faded in slowly below the fold was assumed not to exist (same study). |
-| One type at a time | Fade in either text or images within a section, not both at once. | Same study: text and images fading in together competed for attention. |
-| No scrolljacking | Never change scroll speed or direction. No smooth-scroll libraries, no pinned scroll sequences. | NN/g found scrolljacking threatens user control, discoverability, and task success ([NN/g](https://www.nngroup.com/articles/scrolljacking-101/)). |
-| Reduced motion | Wrap the app in `<MotionConfig reducedMotion="user">`. With the OS "reduce motion" setting on, movement becomes a plain opacity change or nothing. That includes the dock magnification. | WCAG 2.3.3 asks sites to support user motion preferences and remove unnecessary motion ([W3C](https://w3c.github.io/wcag/understanding/animation-from-interactions)). |
-| Light on mobile | Fewer scroll fades on small screens. No hover-dependent effects on touch devices. | NN/g recommends avoiding scroll fading on mobile (same study). |
-| Cheap to render | Animate only `transform` and `opacity`. No layout-shifting animation. | Keeps animation smooth and avoids layout shift (see Quality bar). |
+| Rule                          | Requirement                                                                                                                                                                              | Why                                                                                                                                                                   |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fade durations                | Elements fading in on scroll: 100–400ms. Hover and press effects: 150–250ms, using springs where it fits.                                                                                | NN/g's scroll-fading study: users who scanned quickly scrolled past text before it finished fading in ([NN/g](https://www.nngroup.com/articles/scroll-fading-101/)).  |
+| Animate once                  | An element animates the first time it enters the viewport, then stays visible (`viewport={{ once: true }}`).                                                                             | Same study: re-animating content every time the reader passes it wasted task-oriented users' time.                                                                    |
+| Nothing hidden at first paint | Hero, role, resume button, and dock are visible immediately. The hero's single signature animation runs _on_ content that's already readable.                                            | Content that faded in slowly below the fold was assumed not to exist (same study).                                                                                    |
+| One type at a time            | Fade in either text or images within a section, not both at once.                                                                                                                        | Same study: text and images fading in together competed for attention.                                                                                                |
+| No scrolljacking              | Never change scroll speed or direction. No smooth-scroll libraries, no pinned scroll sequences.                                                                                          | NN/g found scrolljacking threatens user control, discoverability, and task success ([NN/g](https://www.nngroup.com/articles/scrolljacking-101/)).                     |
+| Reduced motion                | Wrap the app in `<MotionConfig reducedMotion="user">`. With the OS "reduce motion" setting on, movement becomes a plain opacity change or nothing. That includes the dock magnification. | WCAG 2.3.3 asks sites to support user motion preferences and remove unnecessary motion ([W3C](https://w3c.github.io/wcag/understanding/animation-from-interactions)). |
+| Light on mobile               | Fewer scroll fades on small screens. No hover-dependent effects on touch devices.                                                                                                        | NN/g recommends avoiding scroll fading on mobile (same study).                                                                                                        |
+| Cheap to render               | Animate only `transform` and `opacity`. No layout-shifting animation.                                                                                                                    | Keeps animation smooth and avoids layout shift (see Quality bar).                                                                                                     |
 
 Planned uses: one signature animation in the hero (Nikhil approves it on a prototype), dock magnification, project-card hover (a slight lift and shadow), page transitions under 300ms, and the scroll fades above.
 
@@ -101,14 +101,14 @@ Planned uses: one signature animation in the hero (Nikhil approves it on a proto
 
 There are five main pages plus one write-up page per project. Every page shares the same top bar and the same dock.
 
-| Route | Purpose | Must contain |
-| --- | --- | --- |
-| `/` | 10-second overview | Name, one-line role, "open to work" status line, Resume button, 3–4 featured project cards, all visible on the first screen on desktop. |
-| `/projects/` | All projects | Card grid with a filter by area (ML, systems, data). Each card has title, one-liner, stack tags, a status badge, and links to its write-up page, repo, and demo. |
+| Route               | Purpose                              | Must contain                                                                                                                                                                                 |
+| ------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                 | 10-second overview                   | Name, one-line role, "open to work" status line, Resume button, 3–4 featured project cards, all visible on the first screen on desktop.                                                      |
+| `/projects/`        | All projects                         | Card grid with a filter by area (ML, systems, data). Each card has title, one-liner, stack tags, a status badge, and links to its write-up page, repo, and demo.                             |
 | `/projects/[slug]/` | Write-up for one project (new route) | Problem → approach → what's built → results → what's next, with images or diagrams. Generated at build time from content files (`generateStaticParams`), so the static export keeps working. |
-| `/resume/` | Recruiter-ready resume | The base's existing resume page plus a PDF download (`public/resume.pdf`). |
-| `/about/` | Who Nikhil is | Short bio, education, and contact links. |
-| `/writing/` | Optional | Keep it only if Nikhil plans to post write-ups, such as the RecoSys posts (see Open questions). |
+| `/resume/`          | Recruiter-ready resume               | The base's existing resume page plus a PDF download (`public/resume.pdf`).                                                                                                                   |
+| `/about/`           | Who Nikhil is                        | Short bio, education, and contact links.                                                                                                                                                     |
+| `/writing/`         | Optional                             | Keep it only if Nikhil plans to post write-ups, such as the RecoSys posts (see Open questions).                                                                                              |
 
 ### Project content model
 
@@ -118,16 +118,16 @@ One typed entry per project in `src/data/projects.ts`. Long-form write-ups go in
 type Project = {
   slug: string;
   title: string;
-  oneLiner: string;            // TODO(nikhil)
+  oneLiner: string; // TODO(nikhil)
   status: 'shipped' | 'in-progress';
   areas: ('ml' | 'systems' | 'data' | 'llm-security')[];
   stack: string[];
-  role?: string;               // e.g. team lead, solo
+  role?: string; // e.g. team lead, solo
   dates: string;
   repo?: string;
   demo?: string;
   featured: boolean;
-  cover?: string;              // image path
+  cover?: string; // image path
 };
 ```
 

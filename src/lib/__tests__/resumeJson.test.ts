@@ -49,7 +49,7 @@ describe('json resume document', () => {
       label: profile.role,
       email: profile.email,
       // The display city, without asserting a country.
-      location: { city: 'San Francisco' },
+      location: { city: profile.currentCity },
     });
   });
 
@@ -59,8 +59,8 @@ describe('json resume document', () => {
     );
     expect(resume.basics.profiles).toContainEqual({
       network: 'GitHub',
-      username: 'mldangelo',
-      url: 'https://github.com/mldangelo',
+      username: 'sbnikhil',
+      url: 'https://github.com/sbnikhil',
     });
   });
 
@@ -68,19 +68,10 @@ describe('json resume document', () => {
     expect(resume.work.map((position) => position.name)).toEqual(
       sortPositions(work).map((position) => position.name),
     );
-    expect(resume.work[0]).not.toHaveProperty('endDate');
-  });
-
-  // Summaries are Markdown with inline anchors, so this reads the real prose.
-  it('keeps the anchor text of the real prose', () => {
-    const prose = resume.work.flatMap((position) => [
-      position.summary ?? '',
-      ...(position.highlights ?? []),
-    ]);
-
-    expect(prose.join(' ')).toContain(
-      'backed by Anthemis, Foundation Capital, and Y Combinator',
-    );
+    for (const position of sortPositions(work)) {
+      const published = resume.work.find((p) => p.name === position.name);
+      if (!position.endDate) expect(published).not.toHaveProperty('endDate');
+    }
   });
 
   it('uses schema-valid dates throughout', () => {
@@ -96,10 +87,10 @@ describe('json resume document', () => {
   it('splits the degree string into studyType and area', () => {
     expect(resume.education).toHaveLength(degrees.length);
     expect(resume.education[0]).toMatchObject({
-      institution: 'Stanford University',
+      institution: 'University of Wisconsin–Madison',
       studyType: 'M.S.',
-      area: 'Computational and Mathematical Engineering (ICME)',
-      endDate: '2016',
+      area: 'Data Science',
+      endDate: '2026',
     });
   });
 
@@ -108,7 +99,7 @@ describe('json resume document', () => {
   // cannot express, and joining by containment would double every course.
   it('files each course under exactly one degree', async () => {
     expect(resume.education[0].courses).toContain(
-      'EE 364a - Convex Optimization',
+      'TODO 101 - TODO(nikhil): course title',
     );
     expect(
       resume.education.flatMap((entry) => entry.courses ?? []),
@@ -121,10 +112,10 @@ describe('json resume document', () => {
       default: [
         ...degrees,
         {
-          school: 'Stanford University Graduate School of Business',
+          school: 'University of Wisconsin–Madison School of Business',
           degree: 'M.B.A.',
-          link: 'https://gsb.stanford.edu',
-          year: 2018,
+          link: 'https://wsb.wisc.edu',
+          year: 2028,
         },
       ],
     }));

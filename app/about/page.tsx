@@ -9,7 +9,8 @@ import { createPageMetadata } from '@/lib/metadata';
 import { profilePageNode, sectionPageNodes } from '@/lib/schema';
 import { AUTHOR_NAME } from '@/lib/utils';
 
-const ABOUT_DESCRIPTION = `Learn about ${AUTHOR_NAME} - ${profile.role} at ${profile.employer} and builder across AI, security, and infrastructure.`;
+// TODO(nikhil): one-sentence description of the About page for search results.
+const ABOUT_DESCRIPTION = `About ${AUTHOR_NAME}, ${profile.role} at ${profile.employer}.`;
 
 export const metadata: Metadata = createPageMetadata({
   title: 'About',

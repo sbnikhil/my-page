@@ -1,39 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { render, within } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import HomePage from '../page';
 
-vi.mock('@/lib/writing', () => ({
-  getWritingItems: () => [
-    {
-      title: 'Local essay',
-      url: '/writing/local/',
-      date: '2026-07-30',
-      description: '',
-      isExternal: false,
-      source: 'On this site',
-    },
-    {
-      title: 'Remote article',
-      url: 'https://example.com/',
-      date: '2026-03-10',
-      description: '',
-      isExternal: true,
-      source: 'Elsewhere',
-    },
-  ],
-}));
-
 // ↗ means a link leaves the site in a new tab; on-site links carry → or nothing.
-describe('homepage arrows', () => {
-  it('follow the destination', () => {
-    render(<HomePage />);
-    const text = (name: RegExp) =>
-      screen.getByRole('link', { name }).textContent;
+describe('homepage links', () => {
+  it('keep the resume one click from the first screen', () => {
+    const { container } = render(<HomePage />);
+    const hero = container.querySelector('.hero') as HTMLElement;
+    const resume = within(hero).getByRole('link', { name: 'Resume' });
 
-    expect(text(/About me/)).toBe('About me');
-    expect(text(/All writing/)).toBe('All writing →');
-    expect(text(/Local essay/)).toMatch(/→$/);
-    expect(text(/Remote article/)).toMatch(/↗ \(opens in a new tab\)$/);
+    expect(resume.getAttribute('href')).toMatch(/^\/resume\/?$/);
+    expect(resume.textContent).not.toMatch(/↗/);
   });
 });

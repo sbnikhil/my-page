@@ -83,12 +83,8 @@ describe('readImageSize', () => {
 
   // An image the site renders. Deleting it reddens this test as well as the
   // export, so it must not point at a file no page uses.
-  it('reads the WebP encoding used by article assets', () => {
-    expect(
-      readImageSize(
-        '/images/writing/codex-desktop-app-post/codex-dark-mode-review.webp',
-      ),
-    ).toEqual({ width: 1166, height: 656 });
+  it('reads the share card the site ships', () => {
+    expect(readImageSize('/og.png')).toEqual({ width: 1200, height: 630 });
   });
 
   it.each([

@@ -18,31 +18,12 @@ const routes: Route[] = [
     path: '/about',
   },
   {
-    label: 'Resume',
-    path: '/resume',
-  },
-  // Stays in the nav: `/contact` hides the footer, so from there a non-primary
-  // route would be unreachable.
-  {
     label: 'Projects',
     path: '/projects',
   },
   {
-    label: 'Writing',
-    path: '/writing',
-  },
-  {
-    label: 'Speaking',
-    path: '/speaking',
-  },
-  {
-    label: 'Stats',
-    path: '/stats',
-    primary: false,
-  },
-  {
-    label: 'Contact',
-    path: '/contact',
+    label: 'Resume',
+    path: '/resume',
   },
 ];
 

@@ -119,7 +119,7 @@ a.project-entry:focus-visible .project-entry-title {
 /* The role is a phrase to be read, not a reading off an instrument. It stays
    at --color-fg-light: --color-fg-muted is below the 4.5:1 text floor and is
    for marks only. Balanced, because a 9rem column otherwise strands a last
-   word on its own line ("OpenAI · Research / preview"). */
+   word on its own line ("Company · Research / preview"). */
 .project-entry-role {
   display: block;
   margin-top: 0.25rem;

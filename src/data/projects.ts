@@ -1,12 +1,11 @@
 /**
  * The register of things I have built.
  *
- * Two groups, both kept deliberately:
+ * Stage 1 placeholders. Stage 4 replaces this model with the brief's
+ * `Project` type (slug, status, areas, stack, featured, write-up page).
  *
- * - `shipped` — selected production work Michael built, led, or contributed
- *   to, and can be pointed at.
- * - `archive` — student-era experiments. A register that deletes its own
- *   history is a brochure, so these stay, stepped down rather than removed.
+ * - `shipped` — finished work that can be pointed at.
+ * - `archive` — earlier, smaller projects.
  *
  * Every shipped entry declares the role in `src/data/resume/work.ts` that
  * backs its dates and numeric claims. Archive entries are maintained here
@@ -33,7 +32,7 @@ export interface Project {
    */
   image?: string;
   /**
-   * ISO date Michael's work on the project started, or a one-off shipped.
+   * ISO date work on the project started, or a one-off shipped.
    * This is project activity, not necessarily a public launch date.
    */
   date: string;
@@ -52,126 +51,29 @@ export interface Project {
   status: ProjectStatus;
 }
 
-/**
- * Hand-ordered, most recent activity first within each group. Live work leads,
- * then sorts by its own start date; finished work sorts by its end (or one-off)
- * date. `projects.test.ts` pins the complete comparator, including ties.
- */
 const data: Project[] = [
   {
-    title: 'Codex Security',
-    subtitle: 'OpenAI · Research preview',
-    link: 'https://openai.com/index/codex-security-now-in-research-preview/',
-    sourceWork: 'OpenAI',
-    // Michael's involvement began with his OpenAI role. The public research
-    // preview launched three days earlier; month-precision UI shows Mar 2026.
-    date: '2026-03-09',
-    ongoing: true,
-    desc: 'Securing AI systems and applying AI to software security at OpenAI — using models to find and fix vulnerabilities in code.',
+    title: 'TODO(nikhil): project title',
+    subtitle: 'TODO(nikhil): role or context',
+    sourceWork: 'TODO(nikhil): organization',
+    date: '2025-06-01',
+    endDate: '2025-12-31',
+    desc: 'TODO(nikhil): one-line project summary.',
+    tech: ['TODO(nikhil): stack'],
     status: 'shipped',
   },
   {
-    title: 'Promptfoo',
-    subtitle: 'Co-founder & CTO through acquisition · Continued at OpenAI',
-    link: 'https://promptfoo.dev',
-    sourceWork: 'Promptfoo',
-    date: '2024-07-01',
-    ongoing: true,
-    desc: 'Started as a developer-first eval tool and grew into a platform for AI security, red-teaming, and compliance: evaluation framework, vulnerability scanning, static analysis, and automated red-teaming. Reached more than 350,000 developers, 130,000 monthly active users, and teams at more than 25% of the Fortune 500 before joining OpenAI in 2026.',
-    status: 'shipped',
-  },
-  {
-    title: 'Smile ID',
-    subtitle: 'VP Engineering & Head of AI',
-    link: 'https://smile.id',
-    sourceWork: 'Smile ID',
-    date: '2022-01-01',
-    endDate: '2024-07-01',
-    desc: 'ML-powered identity verification APIs used by banks, fintechs, and telcos across Africa. Re-architected inference to scale from 1,000 to more than 1M users per day, cutting job time from over 30 seconds to 7 seconds, and shipped a fraud detection product built on 1-N facial recognition.',
-    tech: ['AWS Lambda', 'Computer vision', 'Embeddings', 'Vector search'],
-    status: 'shipped',
-  },
-  {
-    title: 'Arthena',
-    subtitle: 'Co-founder & CTO',
-    link: 'https://www.ycombinator.com/companies/arthena',
-    sourceWork: 'Arthena',
-    date: '2014-01-01',
-    endDate: '2022-01-01',
-    desc: 'Quantitative art-investment platform backed by Anthemis, Foundation Capital, and Y Combinator. Built valuation models over irregularly sampled time series, plus the data pipelines and research tools behind them. Masterworks later acquired the company in 2023.',
-    tech: [
-      'Graph embeddings',
-      'Probabilistic forecasting',
-      'Online learning',
-      'Microservices',
-    ],
-    status: 'shipped',
-  },
-  {
-    title: 'Matroid',
-    subtitle: 'Co-founder',
-    link: 'https://matroid.com',
-    sourceWork: 'Matroid',
-    date: '2015-09-01',
-    endDate: '2016-06-01',
-    desc: 'Computer vision platform for creating and deploying detectors. Architected and built the initial platform for identifying objects, events, and patterns in video, and carried it through the seed round.',
-    tech: ['Computer vision'],
-    status: 'shipped',
-  },
-  {
-    title: 'Nearest Dollar',
-    subtitle: 'BVP Hackathon',
-    image: '/images/projects/nearestdollar.jpg',
-    date: '2015-11-20',
-    desc: 'Connected to bank accounts to round up purchases and donate spare change to charity.',
-    tech: ['React', 'Node.js', 'Plaid API', 'MongoDB'],
-    status: 'archive',
-  },
-  {
-    title: 'Harvest',
-    subtitle: '3rd place at TechCrunch Disrupt SF',
-    link: 'https://devpost.com/software/harvest',
-    image: '/images/projects/harvest.jpg',
-    date: '2015-09-20',
-    desc: 'Low-cost crop monitoring to catch irrigation leaks and nutrient deficiencies.',
-    tech: ['Python', 'Arduino', 'Computer vision', 'AWS'],
-    status: 'archive',
-  },
-  {
-    title: 'Space Potato',
-    subtitle: 'Kickstarter-funded weather balloon',
-    image: '/images/projects/spacepotato.jpg',
-    date: '2015-06-28',
-    desc: 'Potato-powered weather balloon with cameras. Photos published in a coffee table book.',
-    tech: ['Hardware', 'GPS', 'Photography'],
-    status: 'archive',
-  },
-  {
-    title: 'Cat Detector',
-    subtitle: 'CNN for cat breed classification',
-    image: '/images/projects/catdetector.jpg',
-    date: '2015-05-15',
-    desc: 'Classified 60,000+ cats across 80 breeds before server costs shut it down.',
-    // TensorFlow was not open-sourced until November 2015, six months after
-    // this project date. No primary source establishes a later port.
-    tech: ['Python', 'CNN', 'AWS'],
-    status: 'archive',
-  },
-  {
-    title: 'UB Nanosatellite Program',
-    subtitle: 'AFRL University Nanosatellite Program',
-    link: 'https://ubnl.space/glados/',
-    date: '2011-06-01',
-    endDate: '2012-05-01',
-    desc: 'Co-authored the grant to design and build a multi-spectral imaging satellite, designed its attitude determination and control, and led a 60-person student team through the development lifecycle.',
+    title: 'TODO(nikhil): earlier project',
+    date: '2024-03-01',
+    desc: 'TODO(nikhil): one-line project summary.',
     status: 'archive',
   },
 ];
 
 export default data;
 
-/** The register: production work, most recent first. */
+/** The register: finished work, most recent first. */
 export const shipped = data.filter((project) => project.status === 'shipped');
 
-/** Student-era history, most recent first. */
+/** Earlier, smaller projects, most recent first. */
 export const archive = data.filter((project) => project.status === 'archive');

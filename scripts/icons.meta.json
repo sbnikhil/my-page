@@ -3,8 +3,8 @@
     "accent": "#36559a",
     "onAccent": "#ffffff",
     "backgroundLight": "#f6f3ed",
-    "monogram": "MD",
-    "name": "Michael D'Angelo",
+    "monogram": "BN",
+    "name": "Bhaskar Nikhil Sunkara",
     "font": {
       "name": "Display",
       "family": "Inter",
@@ -31,14 +31,14 @@
       }
     ]
   },
-  "generatorDigest": "a4b888613446a9c74b9a68b3af421dad08717554bcec0dadef06205bff309cbc",
+  "generatorDigest": "58d2216c69ee89d892cb095d8d8e726c09a8ace8ec4c158efddf06bce6ffa112",
   "files": {
-    "app/favicon.ico": "1a36375860b595f54b960ae03580627b62b72e20f44f0fb82066686e10ec41e1",
-    "app/icon.png": "43291a11cdaa0d3333e6ec55216c112f7a0e5cb3c34c1b05869e00fc98057b5e",
-    "app/apple-icon.png": "199c982a9393dbb7103edb219d0c77cb043e8196f04a1c61c91a94b0022f098b",
-    "public/images/icons/icon-192.png": "f36da26102fefc11421fcc5e5f7c446b275ceb02cfce8d80d172e3e956b5561c",
-    "public/images/icons/icon-512.png": "70de66a2f3cd873a32573d0a5fa47770b33e96521deba51d50fa8fc44d56b10b",
-    "public/images/icons/icon-maskable-512.png": "dcfffad9804202211a36cc6a70331263bdc8a7f494fd2e9f0dcc83d81a65f84f",
-    "app/manifest.json": "3a1c7ffdf7fc6e03045a78d74b80b67708488ff035fb42eee788a7a38f23fd07"
+    "app/favicon.ico": "a498525bd127717685b1eb3d341f7ed90f2a8b95b00ff1495bbe198e708583ec",
+    "app/icon.png": "e4f05a7bff591f9753e3d6aa74e04d7d515c315964997cf41bea666a7658c6fc",
+    "app/apple-icon.png": "c61e15ab5f4b3ba385888d8620a020cbbb2ebba2c4fca77f6302ea0643094330",
+    "public/images/icons/icon-192.png": "54a796dcca85ffb784f2f61553a6744c67396eafa8aa62e85bd3ac61a4f103a7",
+    "public/images/icons/icon-512.png": "2252ef677ec82e32f8579c33702341d812643d216321d2e4971bb664b61bc1ae",
+    "public/images/icons/icon-maskable-512.png": "48e08d7bf6bed8eeecd468c0122190762bf393869a4592e1c936d60a89d3eafe",
+    "app/manifest.json": "fde8062aeb62d2a5a88a4866b26f321cf678a5723eb0812a07841ded7eeee535"
   }
 }

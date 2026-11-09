@@ -411,8 +411,6 @@ const REQUIRED_SOCIAL_META = [
   ['property', 'og:image'],
   ['property', 'og:image:alt'],
   ['name', 'twitter:card'],
-  ['name', 'twitter:site'],
-  ['name', 'twitter:creator'],
   ['name', 'twitter:title'],
   ['name', 'twitter:description'],
   ['name', 'twitter:image'],
@@ -778,10 +776,10 @@ if (!existsSync(sitemapPath)) {
   }
 }
 
+// The RSS feed ships with the Writing section, which is not published yet.
+// When it exists, every URL in it must still be valid.
 const feedPath = join(OUT, 'feed.xml');
-if (!existsSync(feedPath)) {
-  fail('feed.xml', 'missing from export');
-} else {
+if (existsSync(feedPath)) {
   const feed = readFileSync(feedPath, 'utf8');
   const textLinks = [...feed.matchAll(/<link>\s*([^<]+?)\s*<\/link>/gi)].map(
     (match) => decodeHtml(match[1]),

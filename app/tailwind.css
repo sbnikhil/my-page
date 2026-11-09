@@ -35,8 +35,6 @@
 @import './styles/pages/resume.css';
 @import './styles/pages/writing.css';
 @import './styles/pages/about.css';
-@import './styles/pages/contact.css';
-@import './styles/pages/stats.css';
 @import './styles/pages/not-found.css';
 
 /* Theme Overrides */

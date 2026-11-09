@@ -14,17 +14,17 @@ const MARKDOWN = `# Intro
 
 Hello from the intro.
 
-# Some history
+# Timeline
 
 - We subscribed to AOL in 1995.
 - At 7, I discovered the mini-games.
 - I have a list of ideas.
 
-# I like
+# Outside of work
 
 - Running
 
-# Websites from people I admire
+# Education
 
 - [Example](https://example.com)`;
 
@@ -45,7 +45,7 @@ describe('AboutContent', () => {
 
     expect(sections[0]).toHaveClass('about-section--log');
     expect(sections[1]).toHaveClass('about-section--compact');
-    expect(sections[2]).toHaveClass('about-section--links');
+    expect(sections[2]).toHaveClass('about-section--compact');
   });
 
   it('pairs each real section with a nav link and marks the first current', () => {
@@ -132,7 +132,7 @@ describe('AboutContent', () => {
 
 Lead paragraph.
 
-# Some history
+# Timeline
 
 - When I was 12, I didn't sleep.
 - We didn't have a computer in 1993.`}
@@ -158,22 +158,22 @@ Lead paragraph.
 
 Lead paragraph.
 
-# Michael's notes
+# Nikhil's notes
 
 - A note.`}
       />,
     );
 
-    const name = 'Michael’s notes';
+    const name = 'Nikhil’s notes';
 
     // Typeset once for both, while the id is read from the title as typed.
     expect(screen.getByRole('heading', { name })).toHaveAttribute(
       'id',
-      'michaels-notes',
+      'nikhils-notes',
     );
     expect(within(sectionNav()).getByRole('link', { name })).toHaveAttribute(
       'href',
-      '#michaels-notes',
+      '#nikhils-notes',
     );
   });
 

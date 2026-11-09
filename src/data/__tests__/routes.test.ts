@@ -18,8 +18,8 @@ describe('routes', () => {
     expect(new Set(labels).size).toBe(labels.length);
   });
 
-  // A secondary route is reachable only through the footer, which `/contact`
-  // hides, so dropping one from the primary nav has to be a deliberate edit.
+  // A secondary route is reachable only through the footer, so dropping one
+  // from the primary nav has to be a deliberate edit.
   it('pins which destinations are primary and which are not', () => {
     const paths = (primary: boolean) =>
       routes
@@ -28,9 +28,7 @@ describe('routes', () => {
         )
         .map((route) => route.path);
 
-    expect(paths(true).join(' ')).toBe(
-      '/about /resume /projects /writing /speaking /contact',
-    );
-    expect(paths(false)).toEqual(['/stats']);
+    expect(paths(true).join(' ')).toBe('/about /projects /resume');
+    expect(paths(false)).toEqual([]);
   });
 });

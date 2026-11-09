@@ -7,7 +7,7 @@ import { smartQuotes } from '../typography';
 describe('smartQuotes', () => {
   it.each([
     // The cases the site actually renders.
-    ["Michael D'Angelo", 'Michael D’Angelo'],
+    ["Conor O'Brien", 'Conor O’Brien'],
     [
       "I'm a Member of the Technical Staff",
       'I’m a Member of the Technical Staff',
@@ -43,7 +43,7 @@ describe('smartQuotes', () => {
   });
 
   it('reads a leading possessive or contraction tail as an apostrophe', () => {
-    // `<a>Promptfoo</a>'s platform` arrives as the text node "'s platform".
+    // `<a>RecoSys</a>'s platform` arrives as the text node "'s platform".
     expect(smartQuotes("'s platform")).toBe('’s platform');
     expect(smartQuotes("'ve shipped")).toBe('’ve shipped');
   });

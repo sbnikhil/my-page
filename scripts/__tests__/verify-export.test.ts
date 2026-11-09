@@ -59,7 +59,7 @@ const draftAsset = (body: string, path = 'images/private.png') =>
   both(addFile(`out/${path}`), inDraftBody(body));
 
 const TEXT_META =
-  'og:title og:description og:site_name og:locale og:type og:image:alt twitter:card twitter:site twitter:creator twitter:title twitter:description'.split(
+  'og:title og:description og:site_name og:locale og:type og:image:alt twitter:card twitter:title twitter:description'.split(
     ' ',
   );
 
@@ -251,7 +251,7 @@ describe('links, metadata, and icons', () => {
         'content="https://example.com/"',
       ),
     ],
-    ...['og:title', 'og:site_name', 'twitter:card', 'twitter:creator'].map(
+    ...['og:title', 'og:site_name', 'twitter:card', 'twitter:title'].map(
       (name): Rejection => [
         `indexable page has 0 ${name} tags; expected 1`,
         replaceIn(ABOUT, new RegExp(`<meta \\w+="${name}"[^>]*>`), ''),

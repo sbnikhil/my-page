@@ -101,12 +101,11 @@ interface ParsedAboutSection {
  * that is derived case-insensitively, so the deep links hold.
  */
 const sectionVariants: Record<string, string> = {
-  'Some history': LOG_VARIANT,
-  'Travel / geography': LOG_VARIANT,
-  'Fun facts': 'about-section--compact',
-  'I like': 'about-section--compact',
-  'I dream of': 'about-section--compact',
-  'Websites from people I admire': 'about-section--links',
+  // A dated timeline, if one is added later, takes the log layout.
+  Timeline: LOG_VARIANT,
+  Education: 'about-section--compact',
+  'What I work on': 'about-section--compact',
+  'Outside of work': 'about-section--compact',
 };
 
 /** The page opens with `# Intro`, whose text runs unheaded above the sections. */

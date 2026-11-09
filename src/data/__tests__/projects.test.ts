@@ -119,14 +119,5 @@ describe('projects data', () => {
 
       expect(record).toEqual(new Set(['2026', '1M', '30', '25%', '1-N']));
     });
-
-    it('makes a historical role explicit on a project that outlived it', () => {
-      const promptfoo = projects.find((p) => p.title === 'Promptfoo');
-
-      expect(promptfoo?.ongoing).toBe(true);
-      expect(promptfoo?.subtitle).toMatch(/through acquisition/i);
-      expect(promptfoo?.subtitle).toMatch(/continued at OpenAI/i);
-      expect(byName.get('Promptfoo')?.endDate).toBe('2026-03-09');
-    });
   });
 });

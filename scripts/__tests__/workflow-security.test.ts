@@ -49,38 +49,25 @@ describe.each(workflows)('$name credential boundaries', ({ workflow }) => {
     }
   });
 
-  it('keeps write permissions confined to deployment without repository code', () => {
+  // Vercel builds and deploys the site from its own Git integration, so no
+  // workflow job needs write access or a token.
+  it('grants no write permission and exposes no token to any job', () => {
     expect(workflow.permissions).toEqual({ contents: 'read' });
-    for (const [id, job] of Object.entries(workflow.jobs)) {
+    for (const job of Object.values(workflow.jobs)) {
       const permissions = job.permissions ?? workflow.permissions;
       expect(typeof permissions).toBe('object');
-      if (id === 'deploy') {
-        // Privileged deployment consumes the validated artifact; it must not
-        // check out the repository or execute its scripts/dependencies.
-        for (const step of job.steps ?? []) {
-          expect(step.run).toBeUndefined();
-          expect(step.uses).toMatch(
-            /^actions\/(?:download-artifact|upload-pages-artifact|deploy-pages)@/,
-          );
-        }
-      } else {
-        expect(Object.values(permissions ?? {})).not.toContain('write');
-        expect(JSON.stringify([workflow.env, job.env, job.steps])).not.toMatch(
-          /\$\{\{\s*(?:secrets[.\[]|github\.token)/,
-        );
-      }
+      expect(Object.values(permissions ?? {})).not.toContain('write');
+      expect(JSON.stringify([workflow.env, job.env, job.steps])).not.toMatch(
+        /\$\{\{\s*(?:secrets[.\[]|github\.token)/,
+      );
     }
   });
 
-  it('configures the existing Pages site without enabling or changing it', () => {
-    const build = workflow.jobs.build;
-    expect(build.permissions).toEqual({ contents: 'read', pages: 'read' });
-    const configure = build.steps?.find((step) =>
-      step.uses?.startsWith('actions/configure-pages@'),
-    );
-    expect(configure?.with).toMatchObject({
-      static_site_generator: 'next',
-      enablement: false,
-    });
+  it('leaves deployment to Vercel', () => {
+    for (const { uses } of stepsOf(workflow)) {
+      expect(uses ?? '').not.toMatch(
+        /^actions\/(?:configure-pages|upload-pages-artifact|deploy-pages)@/,
+      );
+    }
   });
 });
