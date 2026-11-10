@@ -21,7 +21,7 @@ export const DATA = {
   // Shown big in the hero. The full name above stays in the tab title and search results.
   heroName: "Nikhil Sunkara",
   initials: "NS",
-  url: "https://nikhilsunkara.vercel.app",
+  url: "https://nikhilbsunkara.vercel.app",
   location: "TODO(nikhil): city",
   locationLink: "",
   // Hero tagline, also used as the Google search description.
