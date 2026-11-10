@@ -88,7 +88,7 @@ export default function RootLayout({
           "min-h-screen overflow-x-clip bg-background font-sans antialiased relative"
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <MotionProvider>
           <TooltipProvider delayDuration={0}>
             <AmbientBackground />
