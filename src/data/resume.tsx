@@ -40,6 +40,33 @@ export const DATA = {
     "Open to new grad roles in **AI/ML Engineering**, **Data Science** and **Software Engineering**.",
   // Shown on its own line under the status, in capitals.
   availability: "Available to start immediately",
+  // "When I'm not working" section, shown just before Contact.
+  hobbies: {
+    title: "When I'm not working",
+    intro:
+      "When I'm not working, I like getting out and doing something, whether that's ice skating, hiking, traveling somewhere new, or playing badminton or padel. I grew up playing cricket too, though I haven't gotten to play much lately. Otherwise, I'm usually listening to a podcast, reading a book, or watching a documentary.",
+    groups: [
+      {
+        label: "Getting out",
+        items: [
+          { emoji: "⛸️", name: "Ice Skating" },
+          { emoji: "✈️", name: "Travel" },
+          { emoji: "🥾", name: "Hiking" },
+          { emoji: "🏸", name: "Badminton" },
+          { emoji: "🎾", name: "Padel" },
+          { emoji: "🏏", name: "Cricket" },
+        ],
+      },
+      {
+        label: "Winding down",
+        items: [
+          { emoji: "🎙️", name: "Podcasts" },
+          { emoji: "📚", name: "Books" },
+          { emoji: "🎬", name: "Documentaries" },
+        ],
+      },
+    ],
+  },
   // Skills by category, all shown at once. Official logos appear for names
   // listed in src/components/skills-grid.tsx; others get a matching icon.
   skills: [

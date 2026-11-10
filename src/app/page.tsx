@@ -7,6 +7,7 @@ import { SkillsGrid } from "@/components/skills-grid";
 import { AfterHero, HeroScene } from "@/components/page-transition";
 import Markdown from "react-markdown";
 import ContactSection from "@/components/section/contact-section";
+import HobbiesSection from "@/components/section/hobbies-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
@@ -168,6 +169,16 @@ export default function Page() {
         <BlurFade delay={BLUR_FADE_DELAY * 11}>
           <ProjectsSection />
         </BlurFade>
+      </section>
+      <section id="hobbies">
+        <div className="flex min-h-0 flex-col gap-y-4">
+          <BlurFade delay={BLUR_FADE_DELAY * 14}>
+            <h2 className="text-xl font-bold">{DATA.hobbies.title}</h2>
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 15}>
+            <HobbiesSection />
+          </BlurFade>
+        </div>
       </section>
       <section id="contact">
         <BlurFade delay={BLUR_FADE_DELAY * 16}>
