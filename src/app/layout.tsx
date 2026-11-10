@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { HELLO_INIT_SCRIPT, HelloSplash } from "@/components/hello-splash";
@@ -13,17 +13,23 @@ import { AmbientBackground } from "@/components/ambient-background";
 
 
 
-// Inter, self hosted at build time: the same font on every device.
-const inter = Inter({
-  subsets: ["latin"],
+// Fonts ship with the site (Fontsource packages), so builds never download
+// them from Google: no network step that can fail. Inter is the same font on
+// every device; its optical-size file sharpens large headings automatically.
+const inter = localFont({
+  src: "../../node_modules/@fontsource-variable/inter/files/inter-latin-opsz-normal.woff2",
   variable: "--font-inter",
+  weight: "100 900",
   display: "swap",
+  fallback: ["system-ui", "Helvetica Neue", "Arial"],
 });
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+const geistMono = localFont({
+  src: "../../node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2",
   variable: "--font-geist-mono",
+  weight: "100 900",
+  display: "swap",
+  fallback: ["ui-monospace", "Menlo", "monospace"],
 });
 
 export const metadata: Metadata = {
