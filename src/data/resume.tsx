@@ -132,7 +132,7 @@ export const DATA = {
     },
   ],
   navbar: [
-    { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/#hero", icon: HomeIcon, label: "Home" },
     { href: "/#projects", icon: FolderGit2Icon, label: "Projects" },
     { href: RESUME_URL, icon: FileTextIcon, label: "Resume" },
   ],
