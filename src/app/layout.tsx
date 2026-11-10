@@ -79,15 +79,15 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(inter.variable, geistMono.variable)}
     >
-      <head>
-        {/* Before first paint: open at the hero and start the hello splash. */}
-        <script dangerouslySetInnerHTML={{ __html: HELLO_INIT_SCRIPT }} />
-      </head>
       <body
         className={cn(
           "min-h-screen overflow-x-clip bg-background font-sans antialiased relative"
         )}
       >
+        {/* First thing in <body>, so it still runs before anything paints:
+            open at the hero and start the hello splash. Kept out of a manual
+            <head>, which Next.js manages (and streams metadata into). */}
+        <script dangerouslySetInnerHTML={{ __html: HELLO_INIT_SCRIPT }} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <MotionProvider>
           <TooltipProvider delayDuration={0}>
