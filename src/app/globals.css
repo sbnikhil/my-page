@@ -1,0 +1,468 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.18 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Shiki dual theme support */
+  .shiki,
+  .shiki span {
+    color: var(--shiki-light);
+    background-color: transparent;
+  }
+
+  .dark .shiki,
+  .dark .shiki span {
+    color: var(--shiki-dark);
+    background-color: transparent;
+  }
+
+.prose pre {
+    @apply leading-relaxed bg-transparent! font-mono!;
+  }
+
+  .prose code {
+    @apply m-0! mx-1! border rounded-md! px-1.5 py-0.5 bg-muted/60 dark:bg-muted/40 text-[13px]! font-mono text-foreground/90!;
+  }
+
+  .prose code::before, .prose code::after {
+    @apply content-none!;
+  }
+
+  .prose h1 {
+    @apply text-2xl! font-semibold! tracking-tight! leading-tight!;
+  }
+
+  .prose h2 {
+    @apply text-xl! font-semibold! tracking-tight! leading-tight!;
+  }
+
+  .prose h3 {
+    @apply text-lg! font-semibold! tracking-tight! leading-tight!;
+  }
+
+  .prose h4 {
+    @apply text-base! font-medium! tracking-tight! leading-tight!;
+  }
+
+  .prose h5 {
+    @apply text-base! font-medium! tracking-tight! leading-tight!;
+  }
+
+  .prose h6 {
+    @apply text-base! font-medium! tracking-tight! leading-tight!;
+  }
+
+  .prose a {
+    @apply text-primary underline underline-offset-4;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-amber-500! pl-4 italic bg-muted/50 p-4 rounded-md rounded-l-none;
+  }
+
+  .prose blockquote p {
+    @apply m-0!;
+  }
+
+  .prose blockquote p:first-child {
+    @apply mt-0!;
+  }
+
+  /* Task lists (remark-gfm): remove bullet marker so it renders like a pure checklist */
+  .prose :where(ul.contains-task-list):not(:where([class~="not-prose"] *)) {
+    @apply list-none! pl-0!;
+  }
+
+  .prose :where(li.task-list-item):not(:where([class~="not-prose"] *)) {
+    @apply pl-0!;
+  }
+
+  .prose
+    :where(li.task-list-item > input[type="checkbox"]):not(
+      :where([class~="not-prose"] *)
+    ) {
+    @apply mr-2 align-middle!;
+  }
+
+  .prose :where(table):not(:where([class~="not-prose"]) *) {
+    @apply w-full min-w-full;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .prose :where(th):not(:where([class~="not-prose"] *)),
+  .prose :where(td):not(:where([class~="not-prose"] *)) {
+    @apply px-6 py-4 align-middle m-0 whitespace-nowrap;
+  }
+
+  .prose tr{
+    @apply hover:bg-accent/50! transition-colors! cursor-pointer! h-10!;
+  }
+
+  .prose :where(th):not(:where([class~="not-prose"] *)) {
+    @apply text-left font-semibold text-foreground border-b border-border m-0! bg-muted/50 p-3! py-2!;
+  }
+
+  .prose :where(td):not(:where([class~="not-prose"] *)) {
+    @apply text-muted-foreground border-b border-border text-sm! p-2!;
+  }
+
+  .prose :where(th:not(:last-child)):not(:where([class~="not-prose"] *)),
+  .prose :where(td:not(:last-child)):not(:where([class~="not-prose"] *)) {
+    @apply border-r border-border;
+  }
+
+  .prose :where(tbody tr:last-child td):not(:where([class~="not-prose"] *)) {
+    @apply border-b-0;
+  }
+
+}
+/* ============================================================
+   APPLE-INSPIRED PALETTE (Pacific)
+   Neutrals follow apple.com: #F5F5F7 light gray, #1D1D1F near black
+   text, #6E6E73 secondary text, #D2D2D7 hairlines. Dark mode follows
+   iOS: black canvas, #1C1C1E raised cards, #F5F5F7 text.
+
+   Accent gradient: apple.com link blue to iOS System Indigo.
+   --g-from / --g-to         text, links and glow (brighter in dark mode)
+   --g-fill-from / -to       fills behind white text (same in both themes,
+                             dark enough that white text passes contrast)
+   ============================================================ */
+:root {
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #1d1d1f;
+  --primary-foreground: #f5f5f7;
+  --secondary: #e8e8ed;
+  --secondary-foreground: #1d1d1f;
+  --muted: #e8e8ed;
+  --muted-foreground: #6e6e73;
+  --border: #d2d2d7;
+  --input: #d2d2d7;
+  --ring: #0071e3;
+  --g-from: #0066cc;
+  --g-to: #5856d6;
+  --g-fill-from: #0066cc;
+  --g-fill-to: #5856d6;
+}
+.dark {
+  --background: #000000;
+  --foreground: #f5f5f7;
+  --card: #1c1c1e;
+  --card-foreground: #f5f5f7;
+  --popover: #1c1c1e;
+  --popover-foreground: #f5f5f7;
+  --primary: #f5f5f7;
+  --primary-foreground: #1d1d1f;
+  --secondary: #2c2c2e;
+  --secondary-foreground: #f5f5f7;
+  --muted: #2c2c2e;
+  --muted-foreground: #a1a1a6;
+  --border: #38383a;
+  --input: #38383a;
+  --ring: #2997ff;
+  --g-from: #2997ff;
+  --g-to: #5e5ce6;
+}
+
+@theme inline {
+  --color-accent-from: var(--g-from);
+  --color-accent-to: var(--g-to);
+  /* Inter on every device, so the site looks identical everywhere. */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@layer components {
+  /* Gradient text, for large headings only. */
+  .text-gradient {
+    background-image: linear-gradient(100deg, var(--g-from), var(--g-to));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* Gradient fill for pills and buttons with white text. */
+  .bg-gradient-accent {
+    background-image: linear-gradient(100deg, var(--g-fill-from), var(--g-fill-to));
+    color: #fff;
+  }
+
+  /* Soft static glow behind the hero. Decorative, never animated. */
+  .accent-glow {
+    background:
+      radial-gradient(40% 60% at 20% 30%, color-mix(in srgb, var(--g-from) 22%, transparent), transparent 70%),
+      radial-gradient(35% 55% at 75% 20%, color-mix(in srgb, var(--g-to) 18%, transparent), transparent 70%);
+    filter: blur(24px);
+  }
+
+  .prose a {
+    color: var(--g-from);
+  }
+}
+
+/* Hero to About feels like changing pages: a scroll from the hero always
+   lands on the start of the content, and back, never halfway between. The
+   content below is taller than the screen, so browsers scroll it freely. */
+html {
+  scroll-snap-type: y mandatory;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* The splash only exists when the pre-paint script allows it. */
+.hello-splash {
+  display: none;
+}
+:root[data-hello="1"] .hello-splash {
+  display: flex;
+}
+/* Ring of accent gradient behind the greeting: a conic sweep, masked to a
+   soft band and blurred. Turned with transform only. */
+.hello-halo {
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    var(--g-from),
+    var(--g-to),
+    transparent 70%
+  );
+  mask: radial-gradient(circle, transparent 52%, #000 58%, #000 64%, transparent 70%);
+  filter: blur(18px);
+  opacity: 0.9;
+}
+
+@media (forced-colors: active) {
+  .text-gradient {
+    color: CanvasText;
+    background: none;
+  }
+  .accent-glow {
+    display: none;
+  }
+}
+
+/* Bob (the floating dock): frosted glass with a see-through accent gradient
+   tint and a matching gradient edge. The tint is light enough that icons and
+   labels keep their contrast. */
+.bob-glass {
+  background-color: color-mix(in srgb, var(--card) 62%, transparent);
+  background-image: linear-gradient(
+    110deg,
+    color-mix(in srgb, var(--g-from) 22%, transparent),
+    color-mix(in srgb, var(--g-to) 22%, transparent)
+  );
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+.bob-glass::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    110deg,
+    color-mix(in srgb, var(--g-from) 60%, transparent),
+    color-mix(in srgb, var(--g-to) 60%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+@media (forced-colors: active) {
+  .bob-glass {
+    background: Canvas;
+    border-color: CanvasText;
+  }
+  .bob-glass::before {
+    display: none;
+  }
+}
+
+/* Ambient margin glows: large, soft accent gradients down both sides of the
+   page, behind all content. Transform-only drift; still for reduced motion. */
+.ambient-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ambient-glow {
+  position: absolute;
+  width: min(42vw, 620px);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.16;
+  animation: ambient-drift 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.dark .ambient-glow {
+  opacity: 0.28;
+}
+.ambient-glow--left {
+  left: max(-26vw, -380px);
+}
+.ambient-glow--right {
+  right: max(-26vw, -380px);
+}
+.ambient-glow--from {
+  background: radial-gradient(circle at 50% 50%, var(--g-from), transparent 68%);
+}
+.ambient-glow--to {
+  background: radial-gradient(circle at 50% 50%, var(--g-to), transparent 68%);
+}
+@keyframes ambient-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(4vw, -6vh, 0) scale(1.12);
+  }
+}
+.ambient-glow--right {
+  animation-direction: alternate-reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow {
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  .ambient-layer {
+    display: none;
+  }
+}
