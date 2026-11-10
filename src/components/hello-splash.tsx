@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 /**
- * Greeting on every page load: "Hello!" draws itself. The letter outlines trace
+ * Greeting on a visitor's very first visit only: "Hello!" draws itself. The letter outlines trace
  * in the accent gradient, then fill in, over a slowly turning gradient halo,
  * and the overlay fades into the hero. About 1.5 seconds; any click, key,
  * scroll or touch skips it.
@@ -12,11 +12,16 @@ import { useEffect, useState } from "react";
  * The inline script in layout.tsx runs before first paint and:
  *   1. always opens the page at the top (the hero), dropping any leftover
  *      #section from the address and the browser's remembered scroll spot;
- *   2. turns the splash on unless the visitor prefers reduced motion, by
+ *   2. turns the splash on for a first visit only (remembered in
+ *      localStorage as soon as it starts, so a refresh mid-animation does not
+ *      replay it) and never for visitors who prefer reduced motion, by
  *      setting `data-hello` on <html>. CSS keeps the overlay hidden otherwise,
  *      so reduced-motion users and visitors without JavaScript never see it.
  */
-export const HELLO_INIT_SCRIPT = `try{if("scrollRestoration" in history)history.scrollRestoration="manual";if(location.hash)history.replaceState(null,"",location.pathname+location.search);window.scrollTo({top:0,left:0,behavior:"instant"});if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.dataset.hello="1"}catch(e){}`;
+export const HELLO_STORAGE_KEY = "seen-hello";
+
+// Runs before first paint. Kept tiny and dependency free.
+export const HELLO_INIT_SCRIPT = `try{if("scrollRestoration" in history)history.scrollRestoration="manual";if(location.hash)history.replaceState(null,"",location.pathname+location.search);window.scrollTo({top:0,left:0,behavior:"instant"});if(!localStorage.getItem("${HELLO_STORAGE_KEY}")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.dataset.hello="1";localStorage.setItem("${HELLO_STORAGE_KEY}","1")}}catch(e){}`;
 
 const DRAW_S = 1.0; // outlines trace in
 const FILL_DELAY_S = 0.6; // fill starts while the outline is finishing
